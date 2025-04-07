@@ -3,6 +3,6 @@ import messageRouter from "./messageRouter.js";
 
 const mainRouter = Router();
 
-mainRouter.use(messageRouter);
+mainRouter.use("/messages", messageRouter);
 
 export default mainRouter;
