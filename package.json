@@ -13,8 +13,16 @@
   "type": "module",
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
+    "eslint": "^9.24.0",
     "express": "^5.1.0",
-    "pg": "^8.14.1"
+    "nodemon": "^3.1.9",
+    "pg": "^8.14.1",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
