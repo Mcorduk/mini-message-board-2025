@@ -51,7 +51,7 @@ export type Database = {
             foreignKeyName: "chatgroup_members_chatgroup_id_fkey";
             columns: ["chatgroup_id"];
             isOneToOne: true;
-            referencedRelation: "chatroom";
+            referencedRelation: "chatrooms";
             referencedColumns: ["id"];
           },
           {
@@ -63,7 +63,7 @@ export type Database = {
           },
         ];
       };
-      chatroom: {
+      chatrooms: {
         Row: {
           admins: string | null;
           avatar: string | null;
@@ -300,7 +300,7 @@ export const Constants = {
   },
 } as const;
 
-export type Chatroom = Database["public"]["Tables"]["chatroom"]["Row"];
+export type Chatroom = Database["public"]["Tables"]["chatrooms"]["Row"];
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 export type Member = Database["public"]["Tables"]["chatgroup_members"]["Row"];
 export type Message = Database["public"]["Tables"]["messages"]["Row"];
