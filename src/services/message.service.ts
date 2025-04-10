@@ -1,7 +1,8 @@
-import { User } from "@supabase/supabase-js";
+import { Message } from "../types/db/database.types";
+
 import supabase from "./supabaseClient";
 
-export async function getAllMessages(): Promise<User[] | null> {
+export async function getAllMessages(): Promise<Message[] | null> {
   const { data, error } = await supabase.from("messages").select("*");
 
   if (error) {
@@ -14,8 +15,8 @@ export async function getAllMessages(): Promise<User[] | null> {
 }
 
 export async function createMessage(
-  newMessage: Partial<User>
-): Promise<User | null> {
+  newMessage: Partial<Message>
+): Promise<Message | null> {
   const { data, error } = await supabase
     .from("messages")
     .insert(newMessage)
