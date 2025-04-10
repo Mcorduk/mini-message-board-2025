@@ -17,10 +17,10 @@ export type Database = {
           is_muted: boolean | null;
           joined_at: string | null;
           last_seen_at: string | null;
+          profile_id: string | null;
           role: number | null;
           status: number | null;
           updated_at: string | null;
-          user_id: number | null;
         };
         Insert: {
           chatgroup_id?: number | null;
@@ -29,10 +29,10 @@ export type Database = {
           is_muted?: boolean | null;
           joined_at?: string | null;
           last_seen_at?: string | null;
+          profile_id?: string | null;
           role?: number | null;
           status?: number | null;
           updated_at?: string | null;
-          user_id?: number | null;
         };
         Update: {
           chatgroup_id?: number | null;
@@ -41,10 +41,10 @@ export type Database = {
           is_muted?: boolean | null;
           joined_at?: string | null;
           last_seen_at?: string | null;
+          profile_id?: string | null;
           role?: number | null;
           status?: number | null;
           updated_at?: string | null;
-          user_id?: number | null;
         };
         Relationships: [
           {
@@ -55,10 +55,10 @@ export type Database = {
             referencedColumns: ["id"];
           },
           {
-            foreignKeyName: "chatgroup_members_user_id_fkey";
-            columns: ["user_id"];
+            foreignKeyName: "chatgroup_members_profile_id_fkey";
+            columns: ["profile_id"];
             isOneToOne: false;
-            referencedRelation: "users";
+            referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
         ];
@@ -108,59 +108,68 @@ export type Database = {
           created_at: string;
           id: number;
           isRead: boolean | null;
+          profile_id: string | null;
           status_id: number | null;
           updated_at: string | null;
-          user_id: number | null;
         };
         Insert: {
           body?: string | null;
           created_at?: string;
           id?: number;
           isRead?: boolean | null;
+          profile_id?: string | null;
           status_id?: number | null;
           updated_at?: string | null;
-          user_id?: number | null;
         };
         Update: {
           body?: string | null;
           created_at?: string;
           id?: number;
           isRead?: boolean | null;
+          profile_id?: string | null;
           status_id?: number | null;
           updated_at?: string | null;
-          user_id?: number | null;
         };
         Relationships: [
           {
-            foreignKeyName: "messages_user_id_fkey";
-            columns: ["user_id"];
+            foreignKeyName: "messages_profile_id_fkey";
+            columns: ["profile_id"];
             isOneToOne: false;
-            referencedRelation: "users";
+            referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
         ];
       };
-      users: {
+      profiles: {
         Row: {
+          avatar_url: string | null;
           created_at: string;
-          id: number;
-          name: string | null;
+          email: string | null;
+          full_name: string | null;
+          id: string;
+          status: number | null;
           updated_at: string | null;
-          user_status: string | null;
+          username: string | null;
         };
         Insert: {
+          avatar_url?: string | null;
           created_at?: string;
-          id?: number;
-          name?: string | null;
+          email?: string | null;
+          full_name?: string | null;
+          id?: string;
+          status?: number | null;
           updated_at?: string | null;
-          user_status?: string | null;
+          username?: string | null;
         };
         Update: {
+          avatar_url?: string | null;
           created_at?: string;
-          id?: number;
-          name?: string | null;
+          email?: string | null;
+          full_name?: string | null;
+          id?: string;
+          status?: number | null;
           updated_at?: string | null;
-          user_status?: string | null;
+          username?: string | null;
         };
         Relationships: [];
       };
@@ -292,6 +301,6 @@ export const Constants = {
 } as const;
 
 export type Chatroom = Database["public"]["Tables"]["chatroom"]["Row"];
-export type User = Database["public"]["Tables"]["users"]["Row"];
+export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
 export type Member = Database["public"]["Tables"]["chatgroup_members"]["Row"];
 export type Message = Database["public"]["Tables"]["messages"]["Row"];
