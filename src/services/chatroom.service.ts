@@ -14,6 +14,24 @@ export async function getAllChatrooms(): Promise<Chatroom[] | null> {
   return data;
 }
 
+export async function getChatroom(
+  chatroomId: number
+): Promise<Chatroom | null> {
+  const { data, error } = await supabase
+    .from("chatrooms")
+    .select("*")
+    .eq("id", chatroomId)
+    .single();
+
+  if (error) {
+    console.error("Error fetching the chatroom:", error);
+
+    return null;
+  }
+
+  return data;
+}
+
 export async function createChatroom(
   newChatroom: Partial<Chatroom>
 ): Promise<Chatroom | null> {
@@ -23,7 +41,43 @@ export async function createChatroom(
     .single();
 
   if (error) {
-    console.error("Error creating Chatrooms:", error);
+    console.error("Error creating chatroom:", error);
+
+    return null;
+  }
+
+  return data;
+}
+
+export async function updateChatroom(
+  chatroomId: number,
+  updates: Partial<Chatroom>
+): Promise<Chatroom | null> {
+  const { data, error } = await supabase
+    .from("chatrooms")
+    .update(updates)
+    .eq("id", chatroomId)
+    .single();
+
+  if (error) {
+    console.error("Error creating chatroom:", error);
+
+    return null;
+  }
+
+  return data;
+}
+
+export async function deleteChatroom(
+  chatroomId: number
+): Promise<Chatroom | null> {
+  const { data, error } = await supabase
+    .from("chatrooms")
+    .delete()
+    .eq("id", chatroomId);
+
+  if (error) {
+    console.error("Error deleting chatroom:", error);
 
     return null;
   }
