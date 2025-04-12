@@ -8,7 +8,7 @@ export async function getAllMembers(
   const { data, error } = await supabase
     .from("members")
     .select("*")
-    .eq("chatroom_id", chatroomId);
+    .eq("id", chatroomId);
 
   if (error) {
     console.error("Error fetching members for chatroom:", error);
