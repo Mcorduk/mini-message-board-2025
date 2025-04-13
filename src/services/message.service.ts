@@ -1,5 +1,4 @@
 import { Message } from "../types/db/database.types";
-
 import supabase from "./supabaseClient";
 
 export async function getAllMessages(): Promise<Message[] | null> {

@@ -1,5 +1,4 @@
 import { Member } from "../types/db/database.types";
-
 import supabase from "./supabaseClient";
 
 export async function getAllMembers(
