@@ -1,7 +1,7 @@
 import { Member } from "../types/db/database.types";
 import supabase from "./supabaseClient";
 
-export class MessageService {
+export class MemberService {
   async getAllMembers(chatroomId: number): Promise<Member[] | null> {
     const { data, error } = await supabase
       .from("members")
