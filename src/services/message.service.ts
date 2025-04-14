@@ -2,8 +2,11 @@ import { Message } from "../types/db/database.types";
 import supabase from "./supabaseClient";
 
 export class MessageService {
-  async getAllMessages(): Promise<Message[] | null> {
-    const { data, error } = await supabase.from("messages").select("*");
+  async getAllMessages(chatroomId: number): Promise<Message[] | null> {
+    const { data, error } = await supabase
+      .from("messages")
+      .select("*")
+      .eq("chatroom_id", chatroomId);
 
     if (error) {
       console.error("Error fetching all message:", error);
