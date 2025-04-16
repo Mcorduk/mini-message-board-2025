@@ -1,6 +1,7 @@
 // src/utils/errors/errorValidation.ts
 
 import { ErrorCode } from "./errorCodes";
+import { MessageParams } from "./errorFactory";
 
 interface ErrorTemplate {
   requiredParams: string[];
