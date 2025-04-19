@@ -1,9 +1,11 @@
 import { Router, Request, Response } from "express";
+import { MemberController } from "../controllers/member.controller";
 
 const memberRouter = Router();
+const memberController: MemberController = new MemberController();
 
 memberRouter.get("/", (req: Request, res: Response) => {
-  res.send("All members");
+  memberController.getAllMembers(req, res);
 });
 
 memberRouter.get("/:memberId", (req: Request, res: Response) => {

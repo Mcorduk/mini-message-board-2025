@@ -24,10 +24,11 @@ export class MessageController {
     }
   }
 
-  async createMessage = async (req: Request, res: Response): Promise<void> => {
+  async createMessage(req: Request, res: Response): Promise<void> {
     try {
       const newMessage: Partial<Message> = req.body;
-      const createdMessage = await this.messageService.createMessage(newMessage);
+      const createdMessage =
+        await this.messageService.createMessage(newMessage);
 
       if (!createdMessage) {
         res.status(400).json({ error: "Failed to create message" });
@@ -38,10 +39,9 @@ export class MessageController {
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
     }
-  };
+  }
 
-
-  async updateMessage = async (req: Request, res: Response): Promise<void> => {
+  async updateMessage(req: Request, res: Response): Promise<void> {
     try {
       const messageId = Number(req.params.messageId);
 
@@ -50,7 +50,10 @@ export class MessageController {
         return;
       }
       const updates: Partial<Message> = req.body;
-      const updatedMessage = await this.messageService.updateMessage(messageId, updates);
+      const updatedMessage = await this.messageService.updateMessage(
+        messageId,
+        updates
+      );
 
       if (!updatedMessage) {
         res.status(404).json({ error: "Message not found" });
@@ -61,10 +64,9 @@ export class MessageController {
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
     }
-  };
+  }
 
-
-  async deleteMessage = async (req: Request, res: Response): Promise<void> => {
+  async deleteMessage(req: Request, res: Response): Promise<void> {
     try {
       const messageId = Number(req.params.messageId);
       if (isNaN(messageId)) {
@@ -82,5 +84,5 @@ export class MessageController {
     } catch (error) {
       res.status(500).json({ error: "Internal server error" });
     }
-  };
+  }
 }

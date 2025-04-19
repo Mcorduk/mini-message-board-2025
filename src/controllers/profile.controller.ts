@@ -10,7 +10,6 @@ export class ProfileController {
 
   async getAllProfiles(req: Request, res: Response) {
     try {
-      const { chatroomId } = req.query;
       const profiles = await this.profileService.getAllProfiles();
 
       if (!profiles) {

@@ -10,7 +10,7 @@ export class MemberController {
 
   async getAllMembers(req: Request, res: Response) {
     try {
-      const { chatroomId } = req.query;
+      const chatroomId = Number(req.query.chatroomId);
       const members = await this.memberService.getAllMembers(chatroomId);
 
       if (!members) {
