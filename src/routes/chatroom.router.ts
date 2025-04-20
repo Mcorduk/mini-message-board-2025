@@ -1,30 +1,27 @@
 import { Router, Request, Response } from "express";
+import { ChatroomController } from "../controllers/chatroom.controller";
 
 const chatroomRouter = Router();
+const chatroomController = new ChatroomController();
 
-chatroomRouter.get("/", (req: Request, res: Response) => {
-  res.send("All chatrooms");
+chatroomRouter.get("/", (req, res) => {
+  chatroomController.getAllChatrooms(req, res);
 });
 
-chatroomRouter.get("/:chatroomId", (req: Request, res: Response) => {
-  const { chatroomId } = req.params;
-  res.send(`Chatroom Id: ${chatroomId}`);
+chatroomRouter.get("/:chatroomId", (req, res) => {
+  chatroomController.getChatroom(req, res);
 });
 
-chatroomRouter.post("/", (req: Request, res: Response) => {
-  const { name, description, type } = req.body;
-  res.send("Chatroom Created");
+chatroomRouter.post("/", (req, res) => {
+  chatroomController.createChatroom(req, res);
 });
 
-chatroomRouter.put("/:chatroomId", (req: Request, res: Response) => {
-  const { chatroomId } = req.params;
-  const { name, description, type } = req.body;
-  res.send(`Chatroom Id: ${chatroomId} updated`);
+chatroomRouter.put("/:chatroomId", (req, res) => {
+  chatroomController.updateChatroom(req, res);
 });
 
-chatroomRouter.delete("/:chatroomId", (req: Request, res: Response) => {
-  const { chatroomId } = req.params;
-  res.send(`Chatroom Id: ${chatroomId} deleted`);
+chatroomRouter.delete("/:chatroomId", (req, res) => {
+  chatroomController.deleteChatroom(req, res);
 });
 
 export default chatroomRouter;

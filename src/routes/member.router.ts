@@ -4,29 +4,24 @@ import { MemberController } from "../controllers/member.controller";
 const memberRouter = Router();
 const memberController: MemberController = new MemberController();
 
-memberRouter.get("/", (req: Request, res: Response) => {
+memberRouter.get("/", (req, res) => {
   memberController.getAllMembers(req, res);
 });
 
-memberRouter.get("/:memberId", (req: Request, res: Response) => {
-  const { memberId } = req.params;
-  res.send(`Member Id: ${memberId}`);
+memberRouter.get("/:memberId", (req, res) => {
+  memberController.getProfileMemberships(req, res);
 });
 
-memberRouter.post("/", (req: Request, res: Response) => {
-  const { userId, chatroomId, role } = req.body;
-  res.send("Member Created");
+memberRouter.post("/", (req, res) => {
+  memberController.createMember(req, res);
 });
 
-memberRouter.put("/:memberId", (req: Request, res: Response) => {
-  const { memberId } = req.params;
-  const { role, status } = req.body;
-  res.send(`Member Id: ${memberId} updated`);
+memberRouter.put("/:memberId", (req, res) => {
+  memberController.updateMember(req, res);
 });
 
-memberRouter.delete("/:memberId", (req: Request, res: Response) => {
-  const { memberId } = req.params;
-  res.send(`Member Id: ${memberId} deleted`);
+memberRouter.delete("/:memberId", (req, res) => {
+  memberController.deleteMember(req, res);
 });
 
 export default memberRouter;
